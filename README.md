@@ -6,8 +6,8 @@ Written by pengchao ma in Xi'an
 
 ## Features
 
-- Frontend-client, Dockerfile to package an image
-- Backend-server, Dockerfile to package an image
+- Frontend/client, Dockerfile to package an image
+- Backend/server, Dockerfile to package an image
 - Database, use mongodb:7.0 image
 
 ## Usage
