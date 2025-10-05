@@ -1,7 +1,8 @@
 # AWS-MERN-DOCKER-EC2
 
 
-## This demo i will use MERN(mongodb,express, react,node.js) to make one user register website
+This demo i will use MERN(mongodb,express, react,node.js) to make one user register website
+Written by pengchao ma in Xi'an
 
 ## Features
 
@@ -44,4 +45,4 @@ Add execute to the following scripts
 
  -- Please make sure you have allowed EC2 port 80 and port 5000(for node) in your Inbound rules
 
- 
+
