@@ -16,11 +16,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copy built app
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Create nginx user and set permissions
-RUN addgroup -g 1001 -S nginx && \
-    adduser -S -D -H -u 1001 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx
-
-# Set proper permissions
+# nginx用户在基础镜像中已存在，不需要重新创建
+# 只需确保正确的文件权限
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 
