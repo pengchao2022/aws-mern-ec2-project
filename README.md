@@ -1,12 +1,12 @@
 # AWS-MERN-DOCKER-EC2
 
 
-This demo i will use MERN(mongodb,express, react,node.js) to make one user register website
+This demo i will use MERN(mongodb,express, react,node.js) to make one user register website.  
 Written by pengchao ma in Xi'an
 
 ## Features
 
-- Frontend-client, Dockfile to package an image
+- Frontend-client, Dockerfile to package an image
 - Backend-server, Dockerfile to package an image
 - Database, use mongodb:7.0 image
 
