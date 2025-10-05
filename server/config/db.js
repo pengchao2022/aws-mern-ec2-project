@@ -2,17 +2,16 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
+    console.log('🔗 Connecting to MongoDB...');
+
+    // 使用最简单的配置
     const conn = await mongoose.connect(
-      process.env.MONGO_URI || 'mongodb://mernuser:mernpassword@mongo:27017/mern-auth?authSource=admin', 
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverSelectionTimeoutMS: 5000,
-        socketTimeoutMS: 45000,
-      }
+      process.env.MONGO_URI || 'mongodb://mernuser:mernpassword@mongo:27017/mern-auth?authSource=admin'
     );
+
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
     console.log(`📊 Database: ${conn.connection.name}`);
+
   } catch (error) {
     console.error('❌ Database connection error:', error.message);
     console.log('🔄 Retrying connection in 5 seconds...');
@@ -20,19 +19,12 @@ const connectDB = async () => {
   }
 };
 
-// MongoDB connection events
-mongoose.connection.on('disconnected', () => {
-  console.log('🔌 MongoDB disconnected');
+mongoose.connection.on('connected', () => {
+  console.log('🔌 Mongoose connected to MongoDB');
 });
 
 mongoose.connection.on('error', (err) => {
-  console.error('❌ MongoDB connection error:', err);
-});
-
-process.on('SIGINT', async () => {
-  await mongoose.connection.close();
-  console.log('📦 MongoDB connection closed through app termination');
-  process.exit(0);
+  console.error('❌ Mongoose connection error:', err.message);
 });
 
 module.exports = connectDB;
