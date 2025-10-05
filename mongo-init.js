@@ -1,28 +1,28 @@
-db = db.getSiblingDB('mern-auth');
+// MongoDB 初始化脚本
+db = db.getSiblingDB('admin');
 
-// 创建应用数据库用户
+// 创建管理员用户
+db.createUser({
+  user: 'admin',
+  pwd: 'adminpassword',
+  roles: [{ role: 'root', db: 'admin' }]
+});
+print('✅ Admin user created');
+
+// 创建应用用户
 db.createUser({
   user: 'mernuser',
   pwd: 'mernpassword',
-  roles: [
-    {
-      role: 'readWrite',
-      db: 'mern-auth'
-    }
-  ]
+  roles: [{ role: 'readWrite', db: 'mern-auth' }]
 });
+print('✅ Application user created');
 
-// 创建测试集合
+// 切换到应用数据库
+db = db.getSiblingDB('mern-auth');
+
+// 创建集合
 db.createCollection('users');
 db.createCollection('sessions');
+print('✅ Collections created');
 
-// 插入测试数据（可选）
-db.users.insertOne({
-  username: 'testuser',
-  email: 'test@example.com',
-  password: '$2a$10$examplehashedpassword',
-  createdAt: new Date(),
-  updatedAt: new Date()
-});
-
-print('MongoDB initialized successfully with mern-auth database');
+print('🎉 MongoDB initialization completed successfully');
